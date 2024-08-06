@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('referral_code')->unique();
+            $table->integer('referral_points')->default(0); // Added field for referral points
             $table->foreignId('referred_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });

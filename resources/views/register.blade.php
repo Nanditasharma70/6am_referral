@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -95,4 +95,115 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Dark background for the whole page */
+            color: #e0e0e0; /* Light text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            background-color: #1f1f1f; /* Darker background for the container */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 360px;
+            text-align: center;
+            border: 1px solid #333; /* Subtle border to make the container stand out */
+        }
+        .register-container h2 {
+            margin-bottom: 20px;
+            color: #ffffff; /* White color for the header */
+            font-size: 24px; /* Slightly larger font size */
+        }
+        .register-container input {
+            padding: 12px;
+            width: calc(100% - 24px); /* Full-width with padding adjustment */
+            margin-bottom: 15px;
+            border: 1px solid #444; /* Slightly lighter border */
+            border-radius: 6px;
+            background-color: #2c2c2c; /* Dark background for inputs */
+            color: #e0e0e0; /* Light text color for inputs */
+            font-size: 16px;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .register-container input:focus {
+            border-color: #007bff; /* Blue border on focus */
+            background-color: #333; /* Slightly lighter background on focus */
+            outline: none; /* Remove default focus outline */
+        }
+        .register-container input::placeholder {
+            color: #aaa; /* Lighter placeholder text */
+        }
+        .register-container button {
+            padding: 12px;
+            background-color: #007bff; /* Blue background for button */
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .register-container button:hover {
+            background-color: #0056b3; /* Darker blue for hover effect */
+            transform: scale(1.02); /* Slight scale effect on hover */
+        }
+        .register-container p {
+            color: #ff4d4d; /* Error message color */
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .status-message {
+            color: #28a745; /* Success message color */
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        @if (session('status'))
+            <p class="status-message">{{ session('status') }}</p>
+        @endif
+        <form method="POST" action="{{ route('register.submit') }}">
+            @csrf
+            <input type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
+            @error('username')
+                <p>{{ $message }}</p>
+            @enderror
+            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+            @error('email')
+                <p>{{ $message }}</p>
+            @enderror
+            <input type="password" name="password" placeholder="Password" required>
+            @error('password')
+                <p>{{ $message }}</p>
+            @enderror
+            <input type="text" name="referral_code" placeholder="Referral Code (optional)" value="{{ old('referral_code') }}">
+            @error('referral_code')
+                <p>{{ $message }}</p>
+            @enderror
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
 </html>
+
+
+
+
