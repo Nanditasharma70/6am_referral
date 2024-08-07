@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
+    // config/app.php
+    'profit_margin' => env('PROFIT_MARGIN', 100), // Default to 100 if not set
 
     /*
     |--------------------------------------------------------------------------
