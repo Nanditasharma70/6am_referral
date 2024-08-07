@@ -110,6 +110,7 @@ class RegistrationController extends Controller
             'referred_by' => $referrer ? $referrer->id : null,
         ]);
 
+        
         if ($referrer) {
             $this->distributeReferralPoints($referrer, 10, 1);
         }
